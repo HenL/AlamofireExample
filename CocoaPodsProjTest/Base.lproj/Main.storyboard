@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CocoaPodsProjTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +15,137 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1H-f7-OnT">
+                                <rect key="frame" x="251" y="285" width="99" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Tap to request"/>
+                                <connections>
+                                    <action selector="requestDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LaK-Je-UfS"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="84P-YU-4eu">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="14C-jw-i6k">
+                                <rect key="frame" x="150" y="141" width="301" height="317"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="398" id="Fvd-Nk-4Gk"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xOI-EE-JD6">
+                                <rect key="frame" x="251" y="40" width="100" height="100"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="3Uu-gZ-hwU"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="gLZ-ZF-IfC"/>
+                                </constraints>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xw-bs-tpk">
+                                <rect key="frame" x="259" y="466" width="83" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Continue -&gt;"/>
+                                <connections>
+                                    <segue destination="Gjc-Ec-4Om" kind="presentation" id="vfY-Sf-u7M"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xOI-EE-JD6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="62V-2A-BWU"/>
+                            <constraint firstItem="b1H-f7-OnT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9s4-Nk-lbe"/>
+                            <constraint firstItem="84P-YU-4eu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FNI-sb-Fb1"/>
+                            <constraint firstItem="6xw-bs-tpk" firstAttribute="top" secondItem="14C-jw-i6k" secondAttribute="bottom" constant="8" id="Feq-le-0OO"/>
+                            <constraint firstItem="6xw-bs-tpk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HwF-Fb-3cF"/>
+                            <constraint firstItem="b1H-f7-OnT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="PYb-FK-tcg"/>
+                            <constraint firstItem="14C-jw-i6k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XRw-qr-oFk"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6xw-bs-tpk" secondAttribute="bottom" constant="40" id="gxZ-db-y0Z"/>
+                            <constraint firstItem="xOI-EE-JD6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m6u-nE-YuU"/>
+                            <constraint firstItem="14C-jw-i6k" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ml8-dO-mer"/>
+                            <constraint firstItem="14C-jw-i6k" firstAttribute="top" secondItem="xOI-EE-JD6" secondAttribute="bottom" constant="10" id="oWk-eF-nCv"/>
+                            <constraint firstItem="84P-YU-4eu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ufc-aw-fXb"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="84P-YU-4eu" id="uJu-uo-PQW"/>
+                        <outlet property="continueButton" destination="6xw-bs-tpk" id="7Sv-cX-vQW"/>
+                        <outlet property="imageView" destination="xOI-EE-JD6" id="tRn-RS-Wlj"/>
+                        <outlet property="requestButton" destination="b1H-f7-OnT" id="8sx-On-XnT"/>
+                        <outlet property="textView" destination="14C-jw-i6k" id="idu-aU-UH1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="416" y="-216"/>
+        </scene>
+        <!--Upload Image Controller-->
+        <scene sceneID="JXk-XD-lbJ">
+            <objects>
+                <viewController id="Gjc-Ec-4Om" customClass="UploadImageController" customModule="CocoaPodsProjTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Spv-Ck-Vyq"/>
+                        <viewControllerLayoutGuide type="bottom" id="nej-7L-t6C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8fc-FE-Rb9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pM-hi-4nV">
+                                <rect key="frame" x="242" y="170" width="116" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Upload an image"/>
+                                <connections>
+                                    <action selector="uploadAnImageDidTap:" destination="Gjc-Ec-4Om" eventType="touchUpInside" id="bx5-hk-cDi"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z2i-fc-dVm">
+                                <rect key="frame" x="200" y="208" width="200" height="200"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="FZN-ex-7Pv"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="iQp-SU-Emr"/>
+                                    <constraint firstAttribute="height" constant="200" id="xfO-zD-eaL"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uo7-pC-aZm">
+                                <rect key="frame" x="290" y="298" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="cdA-gu-6JP">
+                                <rect key="frame" x="225" y="428" width="150" height="2"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="DLR-hH-xKd"/>
+                                </constraints>
+                            </progressView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Z2i-fc-dVm" firstAttribute="centerY" secondItem="8fc-FE-Rb9" secondAttribute="centerY" id="Bba-YI-mHa"/>
+                            <constraint firstItem="Z2i-fc-dVm" firstAttribute="centerX" secondItem="8fc-FE-Rb9" secondAttribute="centerX" id="I2f-wO-M4y"/>
+                            <constraint firstItem="cdA-gu-6JP" firstAttribute="centerX" secondItem="8fc-FE-Rb9" secondAttribute="centerX" id="MF8-Ki-jDo"/>
+                            <constraint firstItem="cdA-gu-6JP" firstAttribute="bottom" secondItem="Z2i-fc-dVm" secondAttribute="bottom" constant="22" id="NEU-yg-xmZ"/>
+                            <constraint firstItem="5pM-hi-4nV" firstAttribute="centerX" secondItem="8fc-FE-Rb9" secondAttribute="centerX" id="nny-48-JTV"/>
+                            <constraint firstItem="5pM-hi-4nV" firstAttribute="top" secondItem="Z2i-fc-dVm" secondAttribute="top" constant="-38" id="tbC-CJ-APw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="uo7-pC-aZm" id="jSH-i2-iKc"/>
+                        <outlet property="pickedImageView" destination="Z2i-fc-dVm" id="FtH-E2-KWI"/>
+                        <outlet property="progressView" destination="cdA-gu-6JP" id="33Z-mI-IsT"/>
+                        <outlet property="uploadButton" destination="5pM-hi-4nV" id="ahD-eh-USE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QRD-t7-WlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1146" y="-216"/>
         </scene>
     </scenes>
 </document>
