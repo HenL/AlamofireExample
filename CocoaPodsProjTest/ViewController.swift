@@ -39,31 +39,36 @@ class ViewController: UIViewController {
         Alamofire.request(.GET, "http://httpbin.org/get")
             .responseJSON { response in
                 
-                if let jsonResult = response.result.value as? Dictionary<String, AnyObject> {
-                    
-                    print(jsonResult.debugDescription)
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.textView.text = jsonResult.debugDescription
-                        self.textView.hidden = false
-                        self.continueButton.hidden = false
-                        self.activityIndicator.stopAnimating()
-                    }
+                guard let jsonResult = response.result.value as? Dictionary<String, AnyObject> else {
+                    return
+                }
+                
+                print(jsonResult.debugDescription)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.textView.text = jsonResult.debugDescription
+                    self.textView.hidden = false
+                    self.continueButton.hidden = false
+                    self.activityIndicator.stopAnimating()
                 }
         }
         
         let iconUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Robot_icon.svg/1024px-Robot_icon.svg.png"
         
         Alamofire.request(Method.GET, iconUrl).validate().response {
-            (_, _, data, error) in
+            (_, _, data, _) in
             
-            if error == nil && data != nil {
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.imageView.image = UIImage(data: data!)
-                }
+            guard let imageData = data else {
+                return
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.imageView.image = UIImage(data: imageData)
             }
         }
     }
 }
+
+// read about guard - Done!
+
 

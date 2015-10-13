@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import AssetsLibrary
+import Photos
+import Bolts
 
 class UploadImageController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -43,15 +45,25 @@ class UploadImageController: UIViewController, UIImagePickerControllerDelegate, 
     // MARK:  UIImagePickerControllerDelegate Methods
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-     
+        
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
-            if( info.keys.contains(UIImagePickerControllerReferenceURL)) {
 
-                if let assetURL = info[UIImagePickerControllerReferenceURL] as? NSURL {
+            let assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(pickedImage)
+            let localId = (assetChangeRequest.placeholderForCreatedAsset?.localIdentifier)!
+            let assetResult = PHAsset.fetchAssetsWithLocalIdentifiers([localId], options: nil)
+            let asset = assetResult.firstObject as! PHAsset
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                
+                PHImageManager.defaultManager().requestImageDataForAsset(asset, options: nil, resultHandler: { [weak self] (imageData, dataUTI, orientation, info) -> Void in
+                    print(info)
                     
-                    uploadImage(assetURL, pickedImage: pickedImage)
-                }
+                    guard let strongSelf = self, imageInfo = info, imageUrl = imageInfo["PHImageFileURLKey"] as? NSURL else {
+                        return
+                    }
+                    
+                    strongSelf.uploadImage(imageUrl, pickedImage: pickedImage)
+                    })
             }
         }
         
