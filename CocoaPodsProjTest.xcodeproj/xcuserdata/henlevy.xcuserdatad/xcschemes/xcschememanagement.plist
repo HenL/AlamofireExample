@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>CocoaPodsProjTestUITests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>5A7277071BD8B6D100AE8D6A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5ADFC8591BC5358A00226AE1</key>
 		<dict>
 			<key>primary</key>

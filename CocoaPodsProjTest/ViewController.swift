@@ -69,6 +69,3 @@ class ViewController: UIViewController {
     }
 }
 
-// read about guard - Done!
-
-

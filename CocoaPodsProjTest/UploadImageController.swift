@@ -48,23 +48,33 @@ class UploadImageController: UIViewController, UIImagePickerControllerDelegate, 
         
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
-            let assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(pickedImage)
-            let localId = (assetChangeRequest.placeholderForCreatedAsset?.localIdentifier)!
-            let assetResult = PHAsset.fetchAssetsWithLocalIdentifiers([localId], options: nil)
-            let asset = assetResult.firstObject as! PHAsset
+            var localId = ""
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                
-                PHImageManager.defaultManager().requestImageDataForAsset(asset, options: nil, resultHandler: { [weak self] (imageData, dataUTI, orientation, info) -> Void in
-                    print(info)
+            PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+                let assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(pickedImage)
+                localId = (assetChangeRequest.placeholderForCreatedAsset?.localIdentifier)!
+                }, completionHandler: { (success, error) -> Void in
                     
-                    guard let strongSelf = self, imageInfo = info, imageUrl = imageInfo["PHImageFileURLKey"] as? NSURL else {
+                    guard success else {
                         return
                     }
                     
-                    strongSelf.uploadImage(imageUrl, pickedImage: pickedImage)
-                    })
-            }
+                    let assetResult = PHAsset.fetchAssetsWithLocalIdentifiers([localId], options: nil)
+                    let asset = assetResult.firstObject as! PHAsset
+                    
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                        
+                        PHImageManager.defaultManager().requestImageDataForAsset(asset, options: nil, resultHandler: { [weak self] (imageData, dataUTI, orientation, info) -> Void in
+                            print(info)
+                            
+                            guard let strongSelf = self, imageInfo = info, imageUrl = imageInfo["PHImageFileURLKey"] as? NSURL else {
+                                return
+                            }
+                            
+                            strongSelf.uploadImage(imageUrl, pickedImage: pickedImage)
+                            })
+                    }
+            })
         }
         
         dismissViewControllerAnimated(true, completion: nil)
